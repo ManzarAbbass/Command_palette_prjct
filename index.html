@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Command Palette</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <header class="header">
+        <h1>Command Palette</h1>
+        <p>Press <kbd>Ctrl</kbd> + <kbd>K</kbd></p>
+    </header>
+
+</div>
+
+
+<!-- Overlay -->
+<div class="palette-overlay hidden">
+
+    <div class="palette">
+
+        <div class="palette-search">
+            <input 
+                type="text" 
+                placeholder="Type a command..."
+                class="command-input"
+                autocomplete="off"
+            >
+        </div>
+
+        <ul class="command-list">
+
+            <li class="command-item">
+                <span>Change Theme</span>
+                <kbd>theme</kbd>
+            </li>
+
+            <li class="command-item">
+                <span>Clear Tasks</span>
+                <kbd>clear</kbd>
+            </li>
+
+            <li class="command-item">
+                <span>Open Settings</span>
+                <kbd>settings</kbd>
+            </li>
+
+            <li class="command-item">
+                <span>Show Help</span>
+                <kbd>help</kbd>
+            </li>
+
+        </ul>
+
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

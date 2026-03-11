@@ -1,0 +1,109 @@
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:system-ui;
+}
+
+body{
+background:#0f172a;
+color:white;
+height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
+/* Header */
+
+.header{
+text-align:center;
+}
+
+kbd{
+background:#1e293b;
+padding:4px 8px;
+border-radius:6px;
+font-size:14px;
+}
+
+/* Overlay */
+
+.palette-overlay{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,0.6);
+display:flex;
+align-items:flex-start;
+justify-content:center;
+padding-top:120px;
+}
+
+.hidden{
+display:none;
+}
+
+/* Palette Box */
+
+.palette{
+width:90%;
+max-width:600px;
+background:#020617;
+border-radius:12px;
+overflow:hidden;
+box-shadow:0 10px 30px rgba(0,0,0,0.4);
+}
+
+/* Search */
+
+.palette-search{
+padding:16px;
+border-bottom:1px solid #1e293b;
+}
+
+.command-input{
+width:100%;
+background:transparent;
+border:none;
+outline:none;
+font-size:16px;
+color:white;
+}
+
+/* Command List */
+
+.command-list{
+list-style:none;
+max-height:300px;
+overflow:auto;
+}
+
+.command-item{
+display:flex;
+justify-content:space-between;
+padding:14px 16px;
+cursor:pointer;
+transition:background 0.2s;
+}
+
+.command-item:hover{
+background:#1e293b;
+}
+
+.command-item.active{
+background:#334155;
+}
+
+/* Responsive */
+
+@media (max-width:500px){
+
+.palette{
+max-width:95%;
+}
+
+.command-item{
+font-size:14px;
+}
+
+}
