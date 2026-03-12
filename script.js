@@ -1,9 +1,18 @@
-let palletShow = document.querySelector(".palette-overlay");
+let palletOverlay = document.querySelector(".palette-overlay");
+let input=document.querySelector(".command-input");
+
+
 state = {
     isOpen: false,
     activeIndex: -1,
     searchTxt: "",
-    commands: [],
+  commands: [
+    { title: "Open Settings", keyword: "settings" },
+    { title: "Toggle Theme", keyword: "theme" },
+    { title: "Create File", keyword: "create" },
+    { title: "Delete File", keyword: "delete" },
+    { title: "Search Project", keyword: "search" }
+  ],
     filterCommands: []
 }
 // function render() {
@@ -21,15 +30,26 @@ state = {
 //     render()
 // }
 
+function createCommandItem(arg){
+    let commandList=document.querySelector(".command-list");
+    let li=document.createElement("li");
+    li.classList.add("command-item");
+    let span=document.createElement("span");
+    let kbd=document.createElement("kbd");
+
+}
 
 function renderPalette() {
     if (state.isOpen === true) {
-        palletShow.classList.remove("hidden");
+        palletOverlay.classList.remove("hidden");
     }
     else {
-        palletShow.classList.add("hidden");
+        palletOverlay.classList.add("hidden");
 
     }
+}
+function filterPalette(){
+
 }
 
 window.addEventListener("keydown", (event) => {
@@ -42,4 +62,16 @@ window.addEventListener("keydown", (event) => {
         state.isOpen=false;
         renderPalette()
     }
+})
+input.addEventListener("input",(evtObj)=>{
+    state.searchTxt=evtObj.target.value;
+    state.filterCommands=state.commands.filter(x=>x.toLowerCase().includes(state.searchTxt.toLowerCase()))
+    // state.commands.forEach(x=>{
+    //             if(x.toLowerCase().includes(state.searchTxt.toLowerCase())){
+    //         state.filterCommands.push(x)
+    //     }
+    // })
+    // console.log(state.filterCommands)
+    state.activeIndex++;
+    filterPalette();
 })
