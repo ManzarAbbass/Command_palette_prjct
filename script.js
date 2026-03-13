@@ -30,26 +30,34 @@ state = {
 //     render()
 // }
 
-function createCommandItem(arg){
+function createCommandList(arg){
     let commandList=document.querySelector(".command-list");
-    let li=document.createElement("li");
-    li.classList.add("command-item");
-    let span=document.createElement("span");
-    let kbd=document.createElement("kbd");
-
+    commandList.innerHTML=""
+    arg.forEach(function(cmmnds){
+        let li=document.createElement("li");
+        li.classList.add("command-item");
+        let span=document.createElement("span");
+        span.textContent=cmmnds.title
+        let kbd=document.createElement("kbd");
+        kbd.textContent=cmmnds.keyword
+        li.appendChild(span)
+        li.appendChild(kbd)
+        commandList.appendChild(li)
+    })
 }
 
 function renderPalette() {
     if (state.isOpen === true) {
         palletOverlay.classList.remove("hidden");
+        createCommandList(state.commands)
     }
     else {
         palletOverlay.classList.add("hidden");
-
     }
-}
-function filterPalette(){
+    }
 
+function filterPalette(){
+        createCommandList(state.filterCommands)
 }
 
 window.addEventListener("keydown", (event) => {
@@ -65,13 +73,13 @@ window.addEventListener("keydown", (event) => {
 })
 input.addEventListener("input",(evtObj)=>{
     state.searchTxt=evtObj.target.value;
-    state.filterCommands=state.commands.filter(x=>x.toLowerCase().includes(state.searchTxt.toLowerCase()))
+    state.filterCommands=state.commands.filter(x=>x.title.toLowerCase().includes(state.searchTxt.toLowerCase()))
     // state.commands.forEach(x=>{
     //             if(x.toLowerCase().includes(state.searchTxt.toLowerCase())){
     //         state.filterCommands.push(x)
     //     }
     // })
     // console.log(state.filterCommands)
-    state.activeIndex++;
+    state.activeIndex=0;
     filterPalette();
 })
