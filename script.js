@@ -33,9 +33,12 @@ state = {
 function createCommandList(arg){
     let commandList=document.querySelector(".command-list");
     commandList.innerHTML=""
-    arg.forEach(function(cmmnds){
+    arg.forEach(function(cmmnds,index){
         let li=document.createElement("li");
         li.classList.add("command-item");
+        if(index===state.activeIndex){
+            li.classList.add("active");
+        }
         let span=document.createElement("span");
         span.textContent=cmmnds.title
         let kbd=document.createElement("kbd");
@@ -68,7 +71,19 @@ window.addEventListener("keydown", (event) => {
     }
     else if(event.key==="Escape"){
         state.isOpen=false;
-        renderPalette()
+        renderPalette();
+    }
+    if(event.key==="ArrowUp"){
+        if(state.activeIndex <state.filterCommands.length-1){
+            state.activeIndex++;
+            filterPalette();
+        }
+    }
+    else if(event.key==="ArrowDown"){
+        if(state.activeIndex>0){
+            state.activeIndex--;
+            filterPalette();
+        }
     }
 })
 input.addEventListener("input",(evtObj)=>{

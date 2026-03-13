@@ -2,7 +2,7 @@
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:system-ui;
+font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto;
 }
 
 body{
@@ -20,11 +20,23 @@ justify-content:center;
 text-align:center;
 }
 
+.header h1{
+font-size:34px;
+margin-bottom:10px;
+font-weight:600;
+}
+
+.header p{
+color:#94a3b8;
+}
+
 kbd{
 background:#1e293b;
 padding:4px 8px;
 border-radius:6px;
-font-size:14px;
+font-size:13px;
+color:#cbd5f5;
+border:1px solid #333946;
 }
 
 /* Overlay */
@@ -32,11 +44,14 @@ font-size:14px;
 .palette-overlay{
 position:fixed;
 inset:0;
-background:rgba(0,0,0,0.6);
+background:rgba(2,6,23,0.7);
+backdrop-filter:blur(6px);
+/* border: 2px solid white; */
 display:flex;
 align-items:flex-start;
 justify-content:center;
 padding-top:120px;
+z-index:1000;
 }
 
 .hidden{
@@ -49,9 +64,26 @@ display:none;
 width:90%;
 max-width:600px;
 background:#020617;
-border-radius:12px;
+border: 2px solid white;
+border-radius:14px;
 overflow:hidden;
-box-shadow:0 10px 30px rgba(0,0,0,0.4);
+box-shadow:
+0 20px 40px rgba(0,0,0,0.6),
+0 0 0 1px rgba(255,255,255,0.05);
+animation:paletteOpen .18s ease;
+}
+
+/* Animation */
+
+@keyframes paletteOpen{
+from{
+opacity:0;
+transform:translateY(-10px) scale(.98);
+}
+to{
+opacity:1;
+transform:translateY(0) scale(1);
+}
 }
 
 /* Search */
@@ -70,28 +102,62 @@ font-size:16px;
 color:white;
 }
 
+.command-input::placeholder{
+color:#64748b;
+}
+
 /* Command List */
 
 .command-list{
 list-style:none;
 max-height:300px;
 overflow:auto;
+padding:6px;
 }
+
+/* Scrollbar */
+
+.command-list::-webkit-scrollbar{
+width:6px;
+}
+
+.command-list::-webkit-scrollbar-thumb{
+background:#334155;
+border-radius:4px;
+}
+
+/* Command Item */
 
 .command-item{
 display:flex;
 justify-content:space-between;
-padding:14px 16px;
+align-items:center;
+padding:12px 14px;
 cursor:pointer;
-transition:background 0.2s;
+border-radius:8px;
+transition:all .15s ease;
+font-size:15px;
+color:#e2e8f0;
 }
+
+/* Hover */
 
 .command-item:hover{
 background:#1e293b;
 }
 
+/* Active */
+
 .command-item.active{
-background:#334155;
+background:#2563eb;
+color:white;
+}
+
+/* Keyword */
+
+.command-item kbd{
+font-size:12px;
+opacity:.8;
 }
 
 /* Responsive */
@@ -104,6 +170,10 @@ max-width:95%;
 
 .command-item{
 font-size:14px;
+}
+
+.header h1{
+font-size:26px;
 }
 
 }
